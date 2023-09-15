@@ -1,0 +1,17 @@
+version: "3"
+services:
+  bun_docker:
+    image: oven/bun
+    container_name: bun_docker
+    command: ["bun", "/app/index.js"]
+    env_file: .env
+    ports:
+      - ${PORT}:${PORT}
+    working_dir: /app
+    volumes:
+      - type: bind
+        source: ./build
+        target: /app
+    tty: true
+    #network_mode: "host"
+    network_mode: "bridge"
